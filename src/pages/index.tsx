@@ -1,3 +1,4 @@
+import ChatWidget from "@/components/chat-widget";
 import ContactForm from "@/components/contact-form";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
@@ -18,6 +19,7 @@ const Index = () => {
         <ContactForm />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 };

@@ -23,3 +23,20 @@ export function scrollToElement(elementId: string, offset: number = 0): void {
     });
   }
 }
+
+// Format AI response to improve readability
+export const formatAIResponse = (text: string): string => {
+  // Convert asterisks to proper markdown bullet points if they're not already
+  let formatted = text.replace(/^\s*\*\s+/gm, "- ");
+
+  // Ensure proper line breaks before bullet points
+  formatted = formatted.replace(/([^\n])(- )/g, "$1\n\n$2");
+
+  // Add line breaks between paragraphs if they don't exist
+  formatted = formatted.replace(/([.!?])\s+([A-Z])/g, "$1\n\n$2");
+
+  // Ensure numbered lists have proper spacing
+  formatted = formatted.replace(/(\d+\.)\s+/g, "$1 ");
+
+  return formatted;
+};
