@@ -1,3 +1,4 @@
+import ContactForm from "@/components/contact-form";
 import Hero from "@/components/hero";
 import HowItWorks from "@/components/how-it-works";
 import Navbar from "@/components/navbar";
@@ -13,6 +14,7 @@ const Index = () => {
         <HowItWorks />
         <WhyChooseUs />
         <Testimonials />
+        <ContactForm />
       </main>
     </div>
   );
