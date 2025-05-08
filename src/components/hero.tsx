@@ -1,8 +1,11 @@
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
 const Hero = () => {
+  const handleSmoothScroll = useSmoothScroll(0);
+
   const highlights = [
     "No upfront fees",
     "Secure transactions",
@@ -46,7 +49,11 @@ const Hero = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
               <Button size="lg" className="text-base font-medium group">
-                <a href="#contact" className="flex items-center gap-2">
+                <a
+                  href="#contact"
+                  className="flex items-center gap-2"
+                  onClick={handleSmoothScroll}
+                >
                   Get a Free Quote
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -56,7 +63,13 @@ const Hero = () => {
                 variant="outline"
                 className="text-base font-medium"
               >
-                <a href="#how-it-works">Learn How It Works</a>
+                <a
+                  href="#how-it-works"
+                  onClick={handleSmoothScroll}
+                  data-offset="80"
+                >
+                  Learn How It Works
+                </a>
               </Button>
             </div>
           </div>

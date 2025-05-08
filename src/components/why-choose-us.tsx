@@ -1,8 +1,10 @@
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { Award, CheckCircle, Rocket, Shield, Star } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
 const WhyChooseUs = () => {
+  const handleSmoothScroll = useSmoothScroll(0);
   const benefits = [
     {
       icon: <Award className="h-12 w-12 text-[#4f46e5] dark:text-[#818cf8]" />,
@@ -96,7 +98,9 @@ const WhyChooseUs = () => {
                 security, and customer satisfaction.
               </p>
               <Button className="mt-4" asChild>
-                <a href="#contact">Get Started Today</a>
+                <a href="#contact" onClick={handleSmoothScroll}>
+                  Get Started Today
+                </a>
               </Button>
             </div>
 

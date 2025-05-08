@@ -1,3 +1,4 @@
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "./theme-toggle";
@@ -5,6 +6,7 @@ import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleSmoothScroll = useSmoothScroll(0); // Default offset of 0 for most sections
 
   const navLinks = [
     { href: "#how-it-works", label: "How It Works" },
@@ -29,6 +31,8 @@ const Navbar = () => {
               key={index}
               href={link.href}
               className="text-sm font-medium transition-colors hover:text-accent"
+              onClick={handleSmoothScroll}
+              data-offset={link.href === "#how-it-works" ? "80" : "0"}
             >
               {link.label}
             </a>
@@ -38,10 +42,14 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button asChild variant="ghost" className="hidden md:flex">
-            <a href="#contact">Get Started</a>
+            <a href="#contact" onClick={handleSmoothScroll}>
+              Get Started
+            </a>
           </Button>
           <Button asChild className="hidden md:flex">
-            <a href="#contact">Get a Quote</a>
+            <a href="#contact" onClick={handleSmoothScroll}>
+              Get a Quote
+            </a>
           </Button>
           <button
             className="md:hidden"
@@ -68,7 +76,11 @@ const Navbar = () => {
                 key={index}
                 href={link.href}
                 className="text-sm font-medium transition-colors hover:text-accent"
-                onClick={() => setIsMenuOpen(false)}
+                data-offset={link.href === "#how-it-works" ? "80" : "0"}
+                onClick={(e) => {
+                  handleSmoothScroll(e);
+                  setIsMenuOpen(false);
+                }}
               >
                 {link.label}
               </a>
@@ -76,12 +88,24 @@ const Navbar = () => {
 
             <div className="pt-2 flex gap-2">
               <Button asChild variant="ghost" className="flex-1">
-                <a href="#contact" onClick={() => setIsMenuOpen(false)}>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    handleSmoothScroll(e);
+                    setIsMenuOpen(false);
+                  }}
+                >
                   Get Started
                 </a>
               </Button>
               <Button asChild className="flex-1">
-                <a href="#contact" onClick={() => setIsMenuOpen(false)}>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    handleSmoothScroll(e);
+                    setIsMenuOpen(false);
+                  }}
+                >
                   Get a Quote
                 </a>
               </Button>

@@ -1,9 +1,17 @@
-import { ArrowDown, ArrowRight, CheckCircle, DollarSign, FileCheck } from "lucide-react";
+import useSmoothScroll from "@/hooks/useSmoothScroll";
+import {
+  ArrowDown,
+  ArrowRight,
+  CheckCircle,
+  DollarSign,
+  FileCheck,
+} from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
 const HowItWorks = () => {
+  const handleSmoothScroll = useSmoothScroll(0);
   const steps = [
     {
       icon: (
@@ -96,7 +104,11 @@ const HowItWorks = () => {
 
         <div className="mt-12 text-center">
           <Button asChild size="lg" className="group">
-            <a href="#contact" className="flex items-center gap-2">
+            <a
+              href="#contact"
+              className="flex items-center gap-2"
+              onClick={handleSmoothScroll}
+            >
               Start the Process
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>

@@ -1,9 +1,11 @@
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const handleSmoothScroll = useSmoothScroll(0);
 
   const quickLinks = [
     { href: "#how-it-works", label: "How It Works" },
@@ -177,6 +179,8 @@ const Footer = () => {
                   <a
                     href={link.href}
                     className="text-muted-foreground hover:text-accent transition-colors flex items-center group"
+                    onClick={handleSmoothScroll}
+                    data-offset={link.href === "#how-it-works" ? "80" : "0"}
                   >
                     <span className="w-0 group-hover:w-2 h-0.5 bg-accent mr-0 group-hover:mr-2 transition-all duration-300"></span>
                     {link.label}
