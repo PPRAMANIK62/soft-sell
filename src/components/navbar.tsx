@@ -6,6 +6,13 @@ import { Button } from "./ui/button";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { href: "#how-it-works", label: "How It Works" },
+    { href: "#why-choose-us", label: "Why Choose Us" },
+    { href: "#testimonials", label: "Testimonials" },
+    { href: "#contact", label: "Contact" },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -17,30 +24,15 @@ const Navbar = () => {
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <a
-            href="#how-it-works"
-            className="text-sm font-medium transition-colors hover:text-accent"
-          >
-            How It Works
-          </a>
-          <a
-            href="#why-choose-us"
-            className="text-sm font-medium transition-colors hover:text-accent"
-          >
-            Why Choose Us
-          </a>
-          <a
-            href="#testimonials"
-            className="text-sm font-medium transition-colors hover:text-accent"
-          >
-            Testimonials
-          </a>
-          <a
-            href="#contact"
-            className="text-sm font-medium transition-colors hover:text-accent"
-          >
-            Contact
-          </a>
+          {navLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              className="text-sm font-medium transition-colors hover:text-accent"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -65,34 +57,23 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border/40">
           <div className="container py-4 flex flex-col space-y-4">
-            <a
-              href="#how-it-works"
-              className="text-sm font-medium transition-colors hover:text-accent"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              How It Works
-            </a>
-            <a
-              href="#why-choose-us"
-              className="text-sm font-medium transition-colors hover:text-accent"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Why Choose Us
-            </a>
-            <a
-              href="#testimonials"
-              className="text-sm font-medium transition-colors hover:text-accent"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Testimonials
-            </a>
-            <a
-              href="#contact"
-              className="text-sm font-medium transition-colors hover:text-accent"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </a>
+            {/* Theme toggle in mobile menu */}
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-border/40">
+              <span className="text-sm font-medium">Theme</span>
+              <ThemeToggle />
+            </div>
+
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="text-sm font-medium transition-colors hover:text-accent"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+
             <div className="pt-2 flex gap-2">
               <Button asChild variant="ghost" className="flex-1">
                 <a href="#contact" onClick={() => setIsMenuOpen(false)}>
