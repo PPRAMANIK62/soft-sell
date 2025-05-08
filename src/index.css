@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -47,7 +48,7 @@
   --foreground: #0f1729;
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.258 0.075 278.4);
+  --card-foreground: #0f1729;
 
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.258 0.075 278.4);
@@ -87,7 +88,7 @@
   --background: #0f1729;
   --foreground: oklch(0.985 0.004 249.4);
 
-  --card: oklch(0.258 0.075 278.4);
+  --card: #0f1729;
   --card-foreground: oklch(0.985 0.004 249.4);
 
   --popover: oklch(0.258 0.075 278.4);
@@ -99,8 +100,8 @@
   --secondary: oklch(0.275 0.02 255.5);
   --secondary-foreground: oklch(0.985 0.004 249.4);
 
-  --muted: oklch(0.275 0.02 255.5);
-  --muted-foreground: oklch(0.523 0.04 261.4);
+  --muted: #1f2a3d;
+  --muted-foreground: #94a3b8;
 
   --accent: #8b5cf6;
   --accent-foreground: oklch(1 0 0);

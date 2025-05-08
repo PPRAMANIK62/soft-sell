@@ -1,4 +1,5 @@
 import Hero from "@/components/hero";
+import HowItWorks from "@/components/how-it-works";
 import Navbar from "@/components/navbar";
 
 const Index = () => {
@@ -7,6 +8,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <HowItWorks />
       </main>
     </div>
   );
