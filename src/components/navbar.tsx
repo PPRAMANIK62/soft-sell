@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const handleSmoothScroll = useSmoothScroll(0); // Default offset of 0 for most sections
+  const handleSmoothScroll = useSmoothScroll(0);
 
   const navLinks = [
     { href: "#how-it-works", label: "How It Works" },
@@ -19,9 +19,12 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#7c3aed]">
+          <a
+            className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#7c3aed]"
+            href="#"
+          >
             SoftSell
-          </div>
+          </a>
         </div>
 
         {/* Desktop navigation */}

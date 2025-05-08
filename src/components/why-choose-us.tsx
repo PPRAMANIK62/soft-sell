@@ -1,6 +1,7 @@
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { motion } from "framer-motion";
 import { Award, CheckCircle, Rocket, Shield, Star } from "lucide-react";
-import { Badge } from "./ui/badge";
+import { MotionCard, MotionHeader, MotionIcon, MotionSection } from "./motion";
 import { Button } from "./ui/button";
 
 const WhyChooseUs = () => {
@@ -52,73 +53,93 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="section relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -right-24 w-96 h-96 bg-indigo-200/20 dark:bg-indigo-900/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-purple-200/20 dark:bg-purple-900/10 rounded-full blur-3xl"></div>
+    <MotionSection id="why-choose-us" staggerAmount={0.1} delayChildren={0.1}>
+      <MotionHeader
+        badge="Our Advantages"
+        title="Why Choose SoftSell"
+        description="We've helped hundreds of businesses recover millions in software investments through our trusted resale platform."
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map((benefit, index) => (
+          <MotionCard
+            key={index}
+            className={`p-6 rounded-xl flex flex-col items-center text-center ${benefit.color} ${benefit.hoverBg} shadow-sm`}
+            index={index}
+            delay={0.1}
+            direction="up"
+            hoverY={-10}
+            hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+          >
+            <MotionIcon
+              className={`mb-6 p-4 rounded-full ${benefit.iconBg} shadow-sm`}
+              hoverRotate={5}
+              hoverScale={1.1}
+            >
+              {benefit.icon}
+            </MotionIcon>
+            <h3 className="text-xl font-medium mb-3">{benefit.title}</h3>
+            <p className="text-muted-foreground">{benefit.description}</p>
+          </MotionCard>
+        ))}
       </div>
 
-      <div className="container relative">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-2">
-            Our Advantages
-          </Badge>
-          <h2 className="mb-4">Why Choose SoftSell</h2>
-          <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
-            We've helped hundreds of businesses recover millions in software
-            investments through our trusted resale platform.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-xl flex flex-col items-center text-center transition-all duration-300 ${benefit.color} ${benefit.hoverBg} shadow-sm transform hover:-translate-y-1`}
+      {/* Added guarantees section */}
+      <MotionCard
+        className="mt-16 p-8 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border border-indigo-100/50 dark:border-indigo-800/20 shadow-sm"
+        delay={0.6}
+        direction="up"
+        hoverY={-5}
+        hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="md:w-1/3">
+            <h3 className="text-2xl font-semibold mb-2">Our Guarantee</h3>
+            <p className="text-muted-foreground">
+              We stand behind our service with a commitment to transparency,
+              security, and customer satisfaction.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-4"
             >
-              <div
-                className={`mb-6 p-4 rounded-full ${benefit.iconBg} shadow-sm`}
-              >
-                {benefit.icon}
-              </div>
-              <h3 className="text-xl font-medium mb-3">{benefit.title}</h3>
-              <p className="text-muted-foreground">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Added guarantees section */}
-        <div className="mt-16 p-8 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border border-indigo-100/50 dark:border-indigo-800/20 shadow-sm">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="md:w-1/3">
-              <h3 className="text-2xl font-semibold mb-2">Our Guarantee</h3>
-              <p className="text-muted-foreground">
-                We stand behind our service with a commitment to transparency,
-                security, and customer satisfaction.
-              </p>
-              <Button className="mt-4" asChild>
+              <Button asChild>
                 <a href="#contact" onClick={handleSmoothScroll}>
                   Get Started Today
                 </a>
               </Button>
-            </div>
+            </motion.div>
+          </div>
 
-            <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {guarantees.map((guarantee, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 bg-white/80 dark:bg-gray-900/50 p-4 rounded-lg shadow-sm"
+          <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {guarantees.map((guarantee, index) => (
+              <MotionCard
+                key={index}
+                className="flex items-center gap-3 bg-white/80 dark:bg-gray-900/50 p-4 rounded-lg shadow-sm"
+                index={index}
+                delay={0.3}
+                direction="right"
+                hoverScale={1.03}
+                hoverY={0}
+              >
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.1 + 0.8,
+                  }}
                 >
                   <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
-                  <span className="font-medium">{guarantee}</span>
-                </div>
-              ))}
-            </div>
+                </motion.div>
+                <span className="font-medium">{guarantee}</span>
+              </MotionCard>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
+      </MotionCard>
+    </MotionSection>
   );
 };
 

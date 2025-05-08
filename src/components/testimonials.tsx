@@ -1,6 +1,13 @@
+import { motion } from "framer-motion";
 import { StarIcon } from "lucide-react";
+import {
+  MotionBackground,
+  MotionBlob,
+  MotionCard,
+  MotionHeader,
+  MotionSection,
+} from "./motion";
 import { Avatar, AvatarFallback } from "./ui/avatar";
-import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
 const Testimonials = () => {
@@ -20,15 +27,15 @@ const Testimonials = () => {
     },
     {
       quote:
-        "After downsizing our team, we had excess licenses that were just sitting idle. SoftSell not only found buyers quickly but also handled all the transfer documentation which saved us considerable time and effort.",
-      author: "Michael Chen",
+        "The team at SoftSell made the entire process painless. We had Microsoft licenses sitting unused after downsizing, and they found buyers within a week. The extra capital helped us invest in new growth initiatives.",
+      author: "Michael Rodriguez",
       position: "Finance Director",
-      company: "Nova Technologies",
-      initials: "MC",
-      amount: "$42,500",
+      company: "Nexus Technologies",
+      initials: "MR",
+      amount: "$42,800",
       stars: 5,
       color:
-        "bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30",
+        "bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950/30 dark:to-indigo-950/30",
       borderColor: "border-purple-100 dark:border-purple-800/30",
     },
     {
@@ -47,57 +54,118 @@ const Testimonials = () => {
   ];
 
   return (
-    <section
+    <MotionSection
       id="testimonials"
-      className="section bg-muted/50 relative overflow-hidden"
+      className="bg-muted/50"
+      staggerAmount={0.1}
+      delayChildren={0.1}
     >
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 -right-24 w-96 h-96 bg-indigo-200/20 dark:bg-indigo-900/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 -left-24 w-96 h-96 bg-purple-200/20 dark:bg-purple-900/10 rounded-full blur-3xl"></div>
-      </div>
+      <MotionBackground>
+        <MotionBlob
+          className="absolute top-1/3 -right-24 w-96 h-96 bg-indigo-200/20 dark:bg-indigo-900/10 rounded-full blur-3xl"
+          animate="move"
+          x={[0, 10, 0]}
+          duration={8}
+        />
+        <MotionBlob
+          className="absolute bottom-1/3 -left-24 w-96 h-96 bg-purple-200/20 dark:bg-purple-900/10 rounded-full blur-3xl"
+          animate="move"
+          x={[0, -10, 0]}
+          duration={8}
+        />
+      </MotionBackground>
 
-      <div className="container relative">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-2">
-            Success Stories
-          </Badge>
-          <h2 className="mb-4">What Our Clients Say</h2>
-          <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
-            Don't just take our word for it – hear from businesses that have
-            successfully recovered value through SoftSell.
-          </p>
-        </div>
+      <MotionHeader
+        badge="Success Stories"
+        title="What Our Clients Say"
+        description="Don't just take our word for it – hear from businesses that have successfully recovered value through SoftSell."
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {testimonials.map((testimonial, index) => (
+          <MotionCard
+            key={index}
+            index={index}
+            delay={0.3}
+            direction="up"
+            hoverY={-10}
+            hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+          >
             <Card
-              key={index}
-              className={`card-hover shadow-sm border ${testimonial.borderColor} ${testimonial.color} overflow-hidden`}
+              className={`shadow-sm border ${testimonial.borderColor} ${testimonial.color} overflow-hidden`}
             >
               <CardContent className="p-8 relative">
                 {/* Highlight badge */}
-                <div className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold py-1 px-3 rounded-bl-lg shadow-md">
+                <motion.div
+                  className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold py-1 px-3 rounded-bl-lg shadow-md"
+                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    x: 0,
+                    transition: {
+                      delay: index * 0.1 + 0.5,
+                      duration: 0.4,
+                      ease: "easeOut",
+                    },
+                  }}
+                >
                   Recovered: {testimonial.amount}
-                </div>
+                </motion.div>
 
                 <div className="flex flex-col h-full">
                   {/* Star rating */}
-                  <div className="flex mb-4">
+                  <motion.div
+                    className="flex mb-4"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.1,
+                          delayChildren: index * 0.1 + 0.6,
+                        },
+                      },
+                    }}
+                  >
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon
+                      <motion.div
                         key={i}
-                        className={`h-5 w-5 ${
-                          i < testimonial.stars
-                            ? "text-yellow-500 fill-yellow-500"
-                            : "text-gray-300"
-                        }`}
-                      />
+                        variants={{
+                          hidden: { opacity: 0, y: 10 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.3 },
+                          },
+                        }}
+                      >
+                        <StarIcon
+                          className={`h-5 w-5 ${
+                            i < testimonial.stars
+                              ? "text-yellow-500 fill-yellow-500"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
 
                   {/* Quote icon */}
-                  <div className="mb-4">
+                  <motion.div
+                    className="mb-4"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: 0.5,
+                      scale: 1,
+                      transition: {
+                        delay: index * 0.1 + 0.7,
+                        duration: 0.4,
+                        ease: "easeOut",
+                      },
+                    }}
+                  >
                     <svg
                       className="h-8 w-8 text-accent opacity-50"
                       fill="currentColor"
@@ -106,7 +174,7 @@ const Testimonials = () => {
                     >
                       <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                     </svg>
-                  </div>
+                  </motion.div>
 
                   {/* Testimonial quote */}
                   <p className="text-base mb-6 flex-grow">
@@ -130,26 +198,10 @@ const Testimonials = () => {
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-
-        {/* Stats section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-6 rounded-xl bg-white/80 dark:bg-gray-900/50 shadow-sm border border-border/40">
-            <div className="text-4xl font-bold text-accent mb-2">$1.2M+</div>
-            <p className="text-muted-foreground">Total value recovered</p>
-          </div>
-          <div className="p-6 rounded-xl bg-white/80 dark:bg-gray-900/50 shadow-sm border border-border/40">
-            <div className="text-4xl font-bold text-accent mb-2">200+</div>
-            <p className="text-muted-foreground">Satisfied clients</p>
-          </div>
-          <div className="p-6 rounded-xl bg-white/80 dark:bg-gray-900/50 shadow-sm border border-border/40">
-            <div className="text-4xl font-bold text-accent mb-2">98%</div>
-            <p className="text-muted-foreground">Client satisfaction rate</p>
-          </div>
-        </div>
+          </MotionCard>
+        ))}
       </div>
-    </section>
+    </MotionSection>
   );
 };
 

@@ -1,4 +1,5 @@
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowRight,
@@ -6,6 +7,7 @@ import {
   DollarSign,
   FileCheck,
 } from "lucide-react";
+import { MotionCard, MotionHeader, MotionIcon, MotionSection } from "./motion";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
@@ -52,57 +54,92 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section
+    <MotionSection
       id="how-it-works"
-      className="section bg-muted/50 relative overflow-hidden"
+      className="bg-muted/50"
+      staggerAmount={0.1}
+      delayChildren={0.1}
     >
-      <div className="container relative">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-2">
-            Simple Process
-          </Badge>
-          <h2 className="mb-4">How It Works</h2>
-          <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
-            Our streamlined process makes it easy to sell your unused software
-            licenses and recover value quickly.
-          </p>
-        </div>
+      <MotionHeader
+        badge="Simple Process"
+        title="How It Works"
+        description="Our streamlined process makes it easy to sell your unused software licenses and recover value quickly."
+      />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {steps.map((step, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {steps.map((step, index) => (
+          <MotionCard
+            key={index}
+            index={index}
+            delay={0.2}
+            direction="up"
+            hoverY={-10}
+          >
             <Card
-              key={index}
-              className={`card-hover relative z-10 bg-gradient-to-br ${step.color} border ${step.borderColor} shadow-sm`}
+              className={`relative z-10 bg-gradient-to-br ${step.color} border ${step.borderColor} shadow-sm`}
             >
               <CardContent className="pt-6 px-6 pb-8 flex flex-col items-center text-center">
-                <div className="mb-6 p-3 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-sm">
+                <MotionIcon
+                  className={`mb-6 p-3 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-sm`}
+                  hoverRotate={5}
+                  hoverScale={1.1}
+                >
                   {step.icon}
-                </div>
+                </MotionIcon>
                 <Badge className="mb-2">{step.badge}</Badge>
                 <h3 className="text-xl font-medium mb-2">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
 
                 {/* Arrow indicator for next step (except last) */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute -right-7.5 top-1/2 transform -translate-y-1/2 z-20">
+                  <motion.div
+                    className="hidden md:block absolute -right-7.5 top-1/2 transform -translate-y-1/2 z-20"
+                    animate={{
+                      x: [0, 5, 0],
+                      transition: {
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "easeInOut",
+                      },
+                    }}
+                  >
                     <div className="bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
                       <ArrowRight className="h-5 w-5 text-accent" />
                     </div>
-                  </div>
+                  </motion.div>
                 )}
                 {index < steps.length - 1 && (
-                  <div className="md:hidden absolute -bottom-11 transform -translate-y-1/2 z-20">
+                  <motion.div
+                    className="md:hidden absolute -bottom-11 transform -translate-y-1/2 z-20"
+                    animate={{
+                      y: [0, 5, 0],
+                      transition: {
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "easeInOut",
+                      },
+                    }}
+                  >
                     <div className="bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
                       <ArrowDown className="h-5 w-5 text-accent" />
                     </div>
-                  </div>
+                  </motion.div>
                 )}
               </CardContent>
             </Card>
-          ))}
-        </div>
+          </MotionCard>
+        ))}
+      </div>
 
-        <div className="mt-12 text-center">
+      <MotionCard
+        className="mt-12 text-center"
+        delay={0.8}
+        direction="up"
+        hoverEffect={false}
+      >
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button asChild size="lg" className="group">
             <a
               href="#contact"
@@ -113,9 +150,9 @@ const HowItWorks = () => {
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </MotionCard>
+    </MotionSection>
   );
 };
 
