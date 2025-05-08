@@ -15,10 +15,10 @@ const Hero = () => {
   ];
 
   return (
-    <section className="section pt-24 md:pt-32 overflow-hidden relative">
+    <section className="section relative overflow-hidden pt-24 md:pt-32">
       {/* Background gradient elements */}
       <motion.div
-        className="absolute -top-24 -left-24 w-96 h-96 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"
+        className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-purple-200/30 blur-3xl dark:bg-purple-900/20"
         initial={{ opacity: 0 }}
         animate={{
           opacity: 0.8,
@@ -26,7 +26,7 @@ const Hero = () => {
         }}
       />
       <motion.div
-        className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-200/30 dark:bg-indigo-900/20 rounded-full blur-3xl"
+        className="absolute -right-24 -bottom-24 h-96 w-96 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-900/20"
         initial={{ opacity: 0 }}
         animate={{
           opacity: 0.8,
@@ -34,18 +34,18 @@ const Hero = () => {
         }}
       />
 
-      <div className="container relative">
+      <div className="relative container">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Badge variant="outline" className="mb-6 mx-auto md:mx-0 block w-fit">
+          <Badge variant="outline" className="mx-auto mb-6 block w-fit md:mx-0">
             Software License Resale Specialists
           </Badge>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
+        <div className="flex flex-col items-center gap-8 md:flex-row md:gap-16">
           <motion.div
             className="flex-1 space-y-6 text-center md:text-left"
             variants={staggerContainer(0.1, 0.2)}
@@ -58,7 +58,7 @@ const Hero = () => {
             >
               Transform Unused Software <br />
               <motion.span
-                className="bg-clip-text text-transparent hero-gradient"
+                className="hero-gradient bg-clip-text text-transparent"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{
                   opacity: 1,
@@ -75,7 +75,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              className="text-xl text-muted-foreground max-w-[600px] mx-auto md:mx-0"
+              className="text-muted-foreground mx-auto max-w-[600px] text-xl md:mx-0"
               variants={fadeIn("up", 0.1, 0.6)}
             >
               SoftSell helps businesses recover value from their unused or
@@ -85,7 +85,7 @@ const Hero = () => {
 
             {/* Highlights */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+              className="flex flex-col justify-center gap-4 sm:flex-row md:justify-start"
               variants={staggerContainer(0.1, 0.4)}
               initial="hidden"
               animate="visible"
@@ -96,54 +96,44 @@ const Hero = () => {
                   className="flex items-center gap-2"
                   variants={fadeIn("right", index * 0.1, 0.5)}
                 >
-                  <CheckCircle className="h-5 w-5 text-accent" />
+                  <CheckCircle className="text-accent h-5 w-5" />
                   <span className="text-sm font-medium">{highlight}</span>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start"
+              className="flex flex-col justify-center gap-4 pt-4 sm:flex-row md:justify-start"
               variants={fadeIn("up", 0.6, 0.6)}
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button size="lg" className="text-base font-medium group">
-                  <a
-                    href="#contact"
-                    className="flex items-center gap-2"
-                    onClick={handleSmoothScroll}
-                  >
-                    Get a Free Quote
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-base font-medium"
+              <Button size="lg" className="group text-base font-medium">
+                <a
+                  href="#contact"
+                  className="flex items-center gap-2"
+                  onClick={handleSmoothScroll}
                 >
-                  <a
-                    href="#how-it-works"
-                    onClick={handleSmoothScroll}
-                    data-offset="80"
-                  >
-                    Learn How It Works
-                  </a>
-                </Button>
-              </motion.div>
+                  Get a Free Quote
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-base font-medium"
+              >
+                <a
+                  href="#how-it-works"
+                  onClick={handleSmoothScroll}
+                  data-offset="80"
+                >
+                  Learn How It Works
+                </a>
+              </Button>
             </motion.div>
           </motion.div>
 
           <motion.div
-            className="flex-1 hidden md:flex justify-center"
+            className="hidden flex-1 justify-center md:flex"
             initial={{ opacity: 0, x: 50 }}
             animate={{
               opacity: 1,
@@ -156,7 +146,7 @@ const Hero = () => {
             }}
           >
             <motion.div
-              className="w-full max-w-[500px] h-[400px] bg-gradient-to-br from-[#e0e7ff] to-[#ede9fe] dark:from-[#312e81]/30 dark:to-[#4c1d95]/30 rounded-xl flex items-center justify-center p-8 shadow-lg"
+              className="flex h-[400px] w-full max-w-[500px] items-center justify-center rounded-xl bg-gradient-to-br from-[#e0e7ff] to-[#ede9fe] p-8 shadow-lg dark:from-[#312e81]/30 dark:to-[#4c1d95]/30"
               animate={{
                 y: [0, -10, 0],
                 transition: {
@@ -168,7 +158,7 @@ const Hero = () => {
               }}
             >
               <motion.div
-                className="w-full h-full bg-white dark:bg-gray-800 rounded-lg shadow-xl flex items-center justify-center p-6 relative glass-card"
+                className="glass-card relative flex h-full w-full items-center justify-center rounded-lg bg-white p-6 shadow-xl dark:bg-gray-800"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{
                   opacity: 1,
@@ -181,26 +171,26 @@ const Hero = () => {
                 }}
               >
                 <motion.div
-                  className="absolute top-6 left-6 w-3 h-3 bg-red-500 rounded-full"
+                  className="absolute top-6 left-6 h-3 w-3 rounded-full bg-red-500"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.8, duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute top-6 left-12 w-3 h-3 bg-yellow-500 rounded-full"
+                  className="absolute top-6 left-12 h-3 w-3 rounded-full bg-yellow-500"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.9, duration: 0.3 }}
                 />
                 <motion.div
-                  className="absolute top-6 left-18 w-3 h-3 bg-green-500 rounded-full"
+                  className="absolute top-6 left-18 h-3 w-3 rounded-full bg-green-500"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 1, duration: 0.3 }}
                 />
-                <div className="text-center space-y-4">
+                <div className="space-y-4 text-center">
                   <motion.div
-                    className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#7c3aed]"
+                    className="bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] bg-clip-text text-5xl font-bold text-transparent"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: 1,

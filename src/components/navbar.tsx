@@ -16,11 +16,11 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <a
-            className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#7c3aed]"
+            className="bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] bg-clip-text text-xl font-bold text-transparent"
             href="#"
           >
             SoftSell
@@ -28,14 +28,18 @@ const Navbar = () => {
         </div>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link, index) => (
             <a
               key={index}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:text-accent"
+              className="hover:text-accent text-sm font-medium transition-colors"
               onClick={handleSmoothScroll}
-              data-offset={link.href === "#how-it-works" ? "80" : "0"}
+              data-offset={
+                link.href === "#how-it-works" || link.href === "#testimonials"
+                  ? "80"
+                  : "0"
+              }
             >
               {link.label}
             </a>
@@ -66,10 +70,10 @@ const Navbar = () => {
 
       {/* Mobile navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-border/40">
-          <div className="container py-4 flex flex-col space-y-4">
+        <div className="border-border/40 border-t md:hidden">
+          <div className="container flex flex-col space-y-4 py-4">
             {/* Theme toggle in mobile menu */}
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-border/40">
+            <div className="border-border/40 mb-2 flex items-center justify-between border-b pb-2">
               <span className="text-sm font-medium">Theme</span>
               <ThemeToggle />
             </div>
@@ -78,7 +82,7 @@ const Navbar = () => {
               <a
                 key={index}
                 href={link.href}
-                className="text-sm font-medium transition-colors hover:text-accent"
+                className="hover:text-accent text-sm font-medium transition-colors"
                 data-offset={link.href === "#how-it-works" ? "80" : "0"}
                 onClick={(e) => {
                   handleSmoothScroll(e);
@@ -89,7 +93,7 @@ const Navbar = () => {
               </a>
             ))}
 
-            <div className="pt-2 flex gap-2">
+            <div className="flex gap-2 pt-2">
               <Button asChild variant="ghost" className="flex-1">
                 <a
                   href="#contact"

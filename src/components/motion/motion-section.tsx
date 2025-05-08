@@ -31,7 +31,7 @@ export const MotionSection = ({
       className={`section relative overflow-hidden ${className}`}
     >
       <motion.div
-        className="container relative"
+        className="relative container"
         variants={staggerContainer(staggerAmount, delayChildren)}
         initial="hidden"
         whileInView="visible"

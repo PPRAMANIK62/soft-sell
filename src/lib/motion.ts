@@ -4,7 +4,7 @@ import type { Variants } from "framer-motion";
 export const fadeIn = (
   direction: "up" | "down" | "left" | "right" | "none" = "none",
   delay: number = 0,
-  duration: number = 0.5
+  duration: number = 0.5,
 ): Variants => {
   return {
     hidden: {
@@ -28,7 +28,7 @@ export const fadeIn = (
 // Staggered container for children animations
 export const staggerContainer = (
   staggerChildren: number = 0.1,
-  delayChildren: number = 0
+  delayChildren: number = 0,
 ): Variants => {
   return {
     hidden: { opacity: 0 },
@@ -45,7 +45,7 @@ export const staggerContainer = (
 // Scale animation
 export const scaleIn = (
   delay: number = 0,
-  duration: number = 0.5
+  duration: number = 0.5,
 ): Variants => {
   return {
     hidden: {
@@ -68,7 +68,7 @@ export const scaleIn = (
 export const slideIn = (
   direction: "up" | "down" | "left" | "right",
   delay: number = 0,
-  duration: number = 0.5
+  duration: number = 0.5,
 ): Variants => {
   return {
     hidden: {

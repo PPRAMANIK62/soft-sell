@@ -60,11 +60,11 @@ const WhyChooseUs = () => {
         description="We've helped hundreds of businesses recover millions in software investments through our trusted resale platform."
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {benefits.map((benefit, index) => (
           <MotionCard
             key={index}
-            className={`p-6 rounded-xl flex flex-col items-center text-center ${benefit.color} ${benefit.hoverBg} shadow-sm`}
+            className={`flex flex-col items-center rounded-xl p-6 text-center ${benefit.color} ${benefit.hoverBg} shadow-sm`}
             index={index}
             delay={0.1}
             direction="up"
@@ -72,13 +72,13 @@ const WhyChooseUs = () => {
             hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
           >
             <MotionIcon
-              className={`mb-6 p-4 rounded-full ${benefit.iconBg} shadow-sm`}
+              className={`mb-6 rounded-full p-4 ${benefit.iconBg} shadow-sm`}
               hoverRotate={5}
               hoverScale={1.1}
             >
               {benefit.icon}
             </MotionIcon>
-            <h3 className="text-xl font-medium mb-3">{benefit.title}</h3>
+            <h3 className="mb-3 text-xl font-medium">{benefit.title}</h3>
             <p className="text-muted-foreground">{benefit.description}</p>
           </MotionCard>
         ))}
@@ -86,15 +86,15 @@ const WhyChooseUs = () => {
 
       {/* Added guarantees section */}
       <MotionCard
-        className="mt-16 p-8 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border border-indigo-100/50 dark:border-indigo-800/20 shadow-sm"
+        className="mt-16 rounded-xl border border-indigo-100/50 bg-gradient-to-r from-indigo-50 to-purple-50 p-8 shadow-sm dark:border-indigo-800/20 dark:from-indigo-950/30 dark:to-purple-950/30"
         delay={0.6}
         direction="up"
         hoverY={-5}
         hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
       >
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="md:w-1/3">
-            <h3 className="text-2xl font-semibold mb-2">Our Guarantee</h3>
+            <h3 className="mb-2 text-2xl font-semibold">Our Guarantee</h3>
             <p className="text-muted-foreground">
               We stand behind our service with a commitment to transparency,
               security, and customer satisfaction.
@@ -112,11 +112,11 @@ const WhyChooseUs = () => {
             </motion.div>
           </div>
 
-          <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:w-2/3">
             {guarantees.map((guarantee, index) => (
               <MotionCard
                 key={index}
-                className="flex items-center gap-3 bg-white/80 dark:bg-gray-900/50 p-4 rounded-lg shadow-sm"
+                className="flex items-center gap-3 rounded-lg bg-white/80 p-4 shadow-sm dark:bg-gray-900/50"
                 index={index}
                 delay={0.3}
                 direction="right"
@@ -131,7 +131,7 @@ const WhyChooseUs = () => {
                     delay: index * 0.1 + 0.8,
                   }}
                 >
-                  <CheckCircle className="h-5 w-5 text-accent flex-shrink-0" />
+                  <CheckCircle className="text-accent h-5 w-5 flex-shrink-0" />
                 </motion.div>
                 <span className="font-medium">{guarantee}</span>
               </MotionCard>

@@ -9,7 +9,7 @@ import WhyChooseUs from "@/components/why-choose-us";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="flex-grow">
         <Hero />

@@ -113,26 +113,26 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-muted/30 to-muted/80 pt-16 pb-8 relative overflow-hidden">
+    <footer className="from-muted/30 to-muted/80 relative overflow-hidden bg-gradient-to-b pt-16 pb-8">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -right-24 w-96 h-96 bg-indigo-200/10 dark:bg-indigo-900/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-purple-200/10 dark:bg-purple-900/5 rounded-full blur-3xl"></div>
+      <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
+        <div className="absolute top-1/4 -right-24 h-96 w-96 rounded-full bg-indigo-200/10 blur-3xl dark:bg-indigo-900/5"></div>
+        <div className="absolute bottom-1/4 -left-24 h-96 w-96 rounded-full bg-purple-200/10 blur-3xl dark:bg-purple-900/5"></div>
       </div>
 
-      <div className="container relative">
+      <div className="relative container">
         {/* Newsletter section */}
-        <div className="mb-16 p-8 rounded-xl bg-white/80 dark:bg-gray-900/50 shadow-sm border border-border/40">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="border-border/40 mb-16 rounded-xl border bg-white/80 p-8 shadow-sm dark:bg-gray-900/50">
+          <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
             <div className="md:w-1/2">
-              <h3 className="text-2xl font-semibold mb-2">Stay Updated</h3>
+              <h3 className="mb-2 text-2xl font-semibold">Stay Updated</h3>
               <p className="text-muted-foreground">
                 Subscribe to our newsletter for the latest industry insights and
                 updates on software license resale opportunities.
               </p>
             </div>
 
-            <div className="md:w-1/2 flex flex-col sm:flex-row gap-3 w-full">
+            <div className="flex w-full flex-col gap-3 sm:flex-row md:w-1/2">
               <Input
                 type="email"
                 placeholder="Enter your email"
@@ -143,9 +143,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12">
+        <div className="grid grid-cols-1 gap-8 pb-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] mb-4">
+            <div className="mb-4 bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] bg-clip-text text-2xl font-bold text-transparent">
               SoftSell
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
@@ -159,7 +159,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 text-muted-foreground hover:text-accent hover:bg-white dark:hover:bg-gray-800 transition-colors shadow-sm"
+                  className="text-muted-foreground hover:text-accent flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow-sm transition-colors hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -169,20 +169,25 @@ const Footer = () => {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-lg font-semibold mb-4 flex items-center">
+            <h3 className="mb-4 flex items-center text-lg font-semibold">
               Quick Links
-              <ArrowUpRight className="ml-1 h-4 w-4 text-accent" />
+              <ArrowUpRight className="text-accent ml-1 h-4 w-4" />
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-accent transition-colors flex items-center group"
+                    className="text-muted-foreground hover:text-accent group flex items-center transition-colors"
                     onClick={handleSmoothScroll}
-                    data-offset={link.href === "#how-it-works" ? "80" : "0"}
+                    data-offset={
+                      link.href === "#how-it-works" ||
+                      link.href === "#testimonials"
+                        ? "80"
+                        : "0"
+                    }
                   >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-accent mr-0 group-hover:mr-2 transition-all duration-300"></span>
+                    <span className="bg-accent mr-0 h-0.5 w-0 transition-all duration-300 group-hover:mr-2 group-hover:w-2"></span>
                     {link.label}
                   </a>
                 </li>
@@ -191,14 +196,14 @@ const Footer = () => {
           </div>
 
           <div className="md:col-span-4">
-            <h3 className="text-lg font-semibold mb-4 flex items-center">
+            <h3 className="mb-4 flex items-center text-lg font-semibold">
               Contact Us
-              <ArrowUpRight className="ml-1 h-4 w-4 text-accent" />
+              <ArrowUpRight className="text-accent ml-1 h-4 w-4" />
             </h3>
             <ul className="space-y-4">
               {contactInfo.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex-shrink-0 p-2 rounded-full bg-accent/10 text-accent">
+                  <div className="bg-accent/10 text-accent mt-0.5 flex-shrink-0 rounded-full p-2">
                     {item.icon}
                   </div>
                   <span className="text-muted-foreground">{item.text}</span>
@@ -208,16 +213,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-border/40 flex flex-col items-center justify-between border-t pt-8 md:flex-row">
           <p className="text-muted-foreground text-sm">
             &copy; {currentYear} SoftSell. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 mt-4 md:mt-0">
+          <div className="mt-4 flex flex-wrap justify-center gap-6 md:mt-0">
             {legalLinks.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                className="text-muted-foreground hover:text-accent text-sm transition-colors"
               >
                 {link.label}
               </a>

@@ -29,7 +29,7 @@ For non-SoftSell questions, briefly explain you can only provide information abo
 `;
 
 export const generateGeminiResponse = async (
-  userMessage: string
+  userMessage: string,
 ): Promise<string> => {
   try {
     const response = await fetch(
@@ -65,7 +65,7 @@ export const generateGeminiResponse = async (
             topK: 40,
           },
         }),
-      }
+      },
     );
 
     const data = await response.json();

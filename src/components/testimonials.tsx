@@ -63,13 +63,13 @@ const Testimonials = () => {
       {/* Background decorative elements */}
       <MotionBackground>
         <MotionBlob
-          className="absolute top-1/3 -right-24 w-96 h-96 bg-indigo-200/20 dark:bg-indigo-900/10 rounded-full blur-3xl"
+          className="absolute top-1/3 -right-24 h-96 w-96 rounded-full bg-indigo-200/20 blur-3xl dark:bg-indigo-900/10"
           animate="move"
           x={[0, 10, 0]}
           duration={8}
         />
         <MotionBlob
-          className="absolute bottom-1/3 -left-24 w-96 h-96 bg-purple-200/20 dark:bg-purple-900/10 rounded-full blur-3xl"
+          className="absolute bottom-1/3 -left-24 h-96 w-96 rounded-full bg-purple-200/20 blur-3xl dark:bg-purple-900/10"
           animate="move"
           x={[0, -10, 0]}
           duration={8}
@@ -82,7 +82,7 @@ const Testimonials = () => {
         description="Don't just take our word for it – hear from businesses that have successfully recovered value through SoftSell."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial, index) => (
           <MotionCard
             key={index}
@@ -93,12 +93,12 @@ const Testimonials = () => {
             hoverShadow="0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
           >
             <Card
-              className={`shadow-sm border ${testimonial.borderColor} ${testimonial.color} overflow-hidden`}
+              className={`border shadow-sm ${testimonial.borderColor} ${testimonial.color} h-full overflow-hidden`}
             >
-              <CardContent className="p-8 relative">
+              <CardContent className="relative h-full p-8">
                 {/* Highlight badge */}
                 <motion.div
-                  className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold py-1 px-3 rounded-bl-lg shadow-md"
+                  className="bg-accent absolute -top-1 -right-1 rounded-bl-lg px-3 py-1 text-xs font-bold text-white shadow-md"
                   initial={{ opacity: 0, scale: 0.8, x: 20 }}
                   animate={{
                     opacity: 1,
@@ -114,10 +114,10 @@ const Testimonials = () => {
                   Recovered: {testimonial.amount}
                 </motion.div>
 
-                <div className="flex flex-col h-full">
+                <div className="flex h-full flex-col justify-between">
                   {/* Star rating */}
                   <motion.div
-                    className="flex mb-4"
+                    className="mb-4 flex"
                     initial="hidden"
                     animate="visible"
                     variants={{
@@ -144,7 +144,7 @@ const Testimonials = () => {
                         <StarIcon
                           className={`h-5 w-5 ${
                             i < testimonial.stars
-                              ? "text-yellow-500 fill-yellow-500"
+                              ? "fill-yellow-500 text-yellow-500"
                               : "text-gray-300"
                           }`}
                         />
@@ -167,7 +167,7 @@ const Testimonials = () => {
                     }}
                   >
                     <svg
-                      className="h-8 w-8 text-accent opacity-50"
+                      className="text-accent h-8 w-8 opacity-50"
                       fill="currentColor"
                       viewBox="0 0 32 32"
                       aria-hidden="true"
@@ -177,20 +177,20 @@ const Testimonials = () => {
                   </motion.div>
 
                   {/* Testimonial quote */}
-                  <p className="text-base mb-6 flex-grow">
+                  <p className="mb-6 min-h-[120px] flex-grow text-base">
                     {testimonial.quote}
                   </p>
 
                   {/* Author info */}
-                  <div className="flex items-center pt-4 border-t border-border/40">
-                    <Avatar className="h-12 w-12 mr-4 ring-2 ring-accent/20">
+                  <div className="border-border/40 flex items-center border-t pt-4">
+                    <Avatar className="ring-accent/20 mr-4 h-12 w-12 ring-2">
                       <AvatarFallback className="bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-700 dark:from-indigo-900 dark:to-purple-900 dark:text-indigo-300">
                         {testimonial.initials}
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <p className="font-medium">{testimonial.author}</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {testimonial.position}, {testimonial.company}
                       </p>
                     </div>

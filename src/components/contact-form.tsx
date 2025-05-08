@@ -77,7 +77,7 @@ const ContactForm = () => {
 
       // Show success message
       toast.success(
-        "Your request has been submitted successfully. We'll contact you within 24 hours."
+        "Your request has been submitted successfully. We'll contact you within 24 hours.",
       );
 
       // Reset form
@@ -85,7 +85,7 @@ const ContactForm = () => {
     } catch (error) {
       // Show error message
       toast.error(
-        "There was a problem submitting your request. Please try again."
+        "There was a problem submitting your request. Please try again.",
       );
       console.error("Form submission error:", error);
     } finally {
@@ -96,18 +96,18 @@ const ContactForm = () => {
   return (
     <section id="contact" className="section">
       <div className="container">
-        <div className="text-center mb-10">
+        <div className="mb-10 text-center">
           <Badge variant="outline" className="mb-2">
             Get Started
           </Badge>
           <h2 className="mb-4">Contact Us for a Quote</h2>
-          <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
+          <p className="text-muted-foreground mx-auto max-w-[800px] text-lg">
             Ready to turn unused software licenses into cash? Fill out the form
             below and our team will provide a free valuation within 24 hours.
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="mx-auto max-w-2xl">
           <Card>
             <CardContent className="p-6 sm:p-8">
               <Form {...form}>
@@ -218,7 +218,7 @@ const ContactForm = () => {
                     {isSubmitting ? "Sending..." : "Get Your Free Valuation"}
                   </Button>
 
-                  <p className="text-center text-sm text-muted-foreground pt-2">
+                  <p className="text-muted-foreground pt-2 text-center text-sm">
                     We respect your privacy and will never share your
                     information with third parties.
                   </p>

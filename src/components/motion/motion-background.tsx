@@ -23,7 +23,7 @@ export const MotionBackground = ({
 }: MotionBackgroundProps) => {
   return (
     <motion.div
-      className={`absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none ${className}`}
+      className={`pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden ${className}`}
       initial={{ opacity: initialOpacity }}
       animate={{ opacity: animateOpacity }}
       transition={{ duration, delay }}

@@ -11,7 +11,7 @@ const ThemeToggle = () => {
 
     // Check if user has system preference for dark mode
     const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     ).matches;
 
     // Set initial theme

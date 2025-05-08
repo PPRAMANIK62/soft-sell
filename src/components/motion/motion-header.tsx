@@ -29,7 +29,7 @@ export const MotionHeader = ({
 }: MotionHeaderProps) => {
   return (
     <motion.div
-      className={`text-center mb-16 ${className}`}
+      className={`mb-16 text-center ${className}`}
       variants={fadeIn(direction, delay, duration)}
     >
       {badge && (
@@ -39,7 +39,7 @@ export const MotionHeader = ({
       )}
       <h2 className="mb-4">{title}</h2>
       {description && (
-        <p className="text-muted-foreground text-lg max-w-[800px] mx-auto">
+        <p className="text-muted-foreground mx-auto max-w-[800px] text-lg">
           {description}
         </p>
       )}
